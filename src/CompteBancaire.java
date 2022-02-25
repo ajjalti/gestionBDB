@@ -102,12 +102,14 @@ public class CompteBancaire {
     public void Debiter(int solde){
         if((this.solde-=solde)<0){
             invalid();
+            Date date =new Date();
+            this.operation.add(new Operation("Debitation",solde,date.toString(),"opération eshouée ! solde insufisant"));
         }else {
             this.solde-=solde;
             this.nmbrCompteDebiter++;
             valid();
             Date date =new Date();
-            this.operation.add(new Operation("Debitation",solde,date.toString()));
+            this.operation.add(new Operation("Debitation",solde,date.toString(),"effectuée avec succée"));
         }
     }
     //#####################
